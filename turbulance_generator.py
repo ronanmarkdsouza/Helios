@@ -44,3 +44,10 @@ def turbulence_generator(n,a,U,I,dt):
                 a[3,2] = a[2,2] + dt
                 avg = (a[2,1] +a[1,1] + a[0,1])/2
                 a[0,3] = np.sqrt(((a[3,1]-avg)**2+(a[3,1]-avg)**2+(a[3,1]-avg)**2)/3)
+        
+        u = U+((a[3,1]/a[0,3])*Standard_deviation) 
+
+        if np.sqrt((u-U)**2) > Standard_deviation:
+                u = U + (np.sign(u) * Standard_deviation)
+                
+        return u,a
