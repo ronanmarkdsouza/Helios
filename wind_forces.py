@@ -36,5 +36,4 @@ def side_forces1(vel,cm,den,rad,len,fin):
     cn = f(ryno)
     F = 0.5* den* vel**2*((cn*rad*2*len)*(cdplt*(fin[0]+fin[1])*fin[2]))
     mom = 0.5*den*vel**2*cdplt*(fin[0]+fin[1])*fin[2]*(fin[4]-cm)
-    
     return F,mom
