@@ -19,7 +19,7 @@ A 6 degree-of-freedom rocket model is a simulation that accurately models the mo
 This type of model is essential for predicting the behavior of rockets during flight and optimizing their performance. The model takes into account factors such as air density, wind speed, and turbulence to simulate the rocket's trajectory accurately. It also considers the rocket's weight, shape, and aerodynamic properties to predict its behavior as it flies through the air. 
 In the case of the validated rocket launch at Spaceport America in New Mexico, the model accurately predicted the rocket's apogee to within 34 feet of the actual altitude reached. This level of accuracy demonstrates the effectiveness of the model and its ability to provide valuable insights into rocket performance.
 
-## About the model
+## About
 There are specific inputs required for the model to run which includes:
 ### Excel Data:
 1) Aerodynamic Coefficients Data
