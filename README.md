@@ -25,8 +25,6 @@ There are specific inputs required for the model to run which includes:
 ### Excel Data:
 1) Aerodynamic Coefficients Data
 2) Motor thrust vs time data
-3) Rocket data (from CFD analysis or previous flight data)
-
 
 ### User inputs required:
 1) Initial Yaw angle                            
@@ -67,8 +65,8 @@ There are specific inputs required for the model to run which includes:
 Once the package is installed on the respective Python environment, one can directly run the main.py file in order to input values and run the model. The model will ask for basic inputs which includes wind speeds in east and north direction, launch pitch and yaw angles, presence/absence of airbrakes, height of the launch rail and and percentage of turbulent intensity user wants in the model. 
 
 Users can change the input values through 2 methods.
-a) Opening '.env' file and manually overridding values of necessary parameters.
-b) Using CLI commands to override values. If you are unsure of what values corresponds to what parameter, simply type "HeliosSim --help" command will help the user obtain the CLI commands required
+1) Opening '.env' file and manually overridding values of necessary parameters. 
+2) Using CLI commands to override values. If you are unsure of what values corresponds to what parameter, simply type "HeliosSim --help" command will help the user obtain the CLI commands required
   
 There are two extra  excel data the motor data can be obtained from thrust-time curve or commercial-off-the-shelf Computational fluid dynamics softwares like Ansys. By default there are example excels present within the package and the user can change the files. The model will have variable computational time depending upon the number of iterations considered through user inputs. 
 
