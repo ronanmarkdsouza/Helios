@@ -26,3 +26,8 @@ def turbulence_generator(n,a,U,I,dt):
         if n==0:
                 a[0,1] = np.random.normal()
         
+        elif n==1:
+                a[1,0] = (2-(5/6))*(a[0,0]/2)
+                a[1,1] = np.random.normal() - (a[2,1]*a[1,2])
+                a[1,2] = a[0,2] + dt
+        
