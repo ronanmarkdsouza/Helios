@@ -5,6 +5,7 @@ Description: This is the driver function for the simulator
 """
 import math
 import pandas as pd
+import numpy as np
 from initialize import rocket_params
 from density_and_temp import density_and_temp
 from propulsion_para import propulsion_para
@@ -112,4 +113,31 @@ def rocket_sim(rocket):
             Fy, Mz = wind_forces(sidey,rocketSim.CG[counter],mydensity,rocket.rocket_rad,rocket.rocket_length,fin_details)
             Fz, My = wind_forces(sidez,rocketSim.CG[counter],mydensity,rocket.rocket_rad,rocket.rocket_length,fin_details)
 
+            Fy = Fy*np.sign(sidey)*cpsi
+            Fz = Fz*np.sign(sidez)*ctheta
+            My = My*np.sign(sidez)*ctheta
+            Mz = -Mz*np.sign(sidey)*cpsi
+            
+            if rocketSim.Xe[counter] > rocket.launch_rail_len:
+                CNY = -(rocketSim.Cn_yaw[counter]*np.sign(rocketSim.psi[counter]))-(rocketSim.Cd[counter]*spsi)-(rocketSim.Cn_alpha[counter]*math.atan((rocketSim.q[counter]*momentarm)/rocketSim.u[counter]))
+                CNP= -(rocketSim.Cn_pitch[counter]*np.sign(rocketSim.theta[counter]))-(rocketSim.Cd[counter]*stheta)-(rocketSim.Cn_alpha[counter]*math.atan((rocketSim.p[counter]*momentarm)/rocketSim.u[counter]))
+                rocketSim.C_roll[counter]= -2*math.pi*math.atan((1.5*rocket.rocket_rad*rocketSim.r[counter])/rocketSim.u[counter])*np.sign(rocketSim.r[counter])
+                
+            else:
+                CNY = 0
+                CNP = 0
+                rocketSim.C_roll[counter] = 0
+                My = 0
+                Mz = 0
+                Fy = 0
+                Fz = 0
+            
+            drag = 0.5*rocketSim.Cd[counter]*rocketSim.u[counter]*rocketSim.u[counter]*mydensity*Aref
+            Yaw = (0.5*CNY*mydensity*rocketSim.u[counter]*rocketSim.u[counter]*Aref*momentarm) + Mz
+            Pitch = (0.5*CNP*mydensity*rocketSim.u[counter]*rocketSim.u[counter]*Aref*momentarm) + My
+            Roll = rocketSim.C_roll[counter]*mydensity*rocketSim.u[counter]*rocketSim.u[counter]*(fin_details[2]*(fin_details[0]+fin_details[1]))*(1.5*rocket.rocket_rad)
+            
+            rocketSim.vtrajectory[counter,0]=rocketSim.Xe[counter]
+            rocketSim.vtrajectory[counter,1]=rocketSim.Ye[counter]
+            rocketSim.vtrajectory[counter,2]=rocketSim.Ze[counter]
 
