@@ -8,6 +8,7 @@ import pandas as pd
 from initialize import rocket_params
 from density_and_temp import density_and_temp
 from propulsion_para import propulsion_para
+from aerodynamic_para import aerodynamic_para
 rocketSim = rocket_params()
 
 def rocket_sim(rocket):
@@ -44,4 +45,17 @@ def rocket_sim(rocket):
         rocketSim.CG[counter] = ((rocket.rocket_mass*rocket.rocket_cg)+(mmass*(rocket.rocket_length-(rocket.motor_length+rocket.noz_length)+mcg)))/rocketSim.Mass[counter]
         rocketSim.Ixx[counter] = rocket.rocket_ami + mIx
         rocketSim.Iyy[counter] = rocket.rocket_tmi + (rocket.rocket_mass*(rocketSim.CG[counter]-(rocket.rocket_cg))**2)+(mIy)+(mmass*(rocketSim.CG[counter]-(rocket.rocket_length-rocket.motor_length+mcg))**2)
+
+        if rocketSim.timer[counter] > time[-1]:
+            rocketSim.mphase = 0
+        if rocketSim.phase == 0:
+            rocketSim.CP[counter], rocketSim.Cn_pitch[counter], rocketSim.Cn_yaw[counter], rocketSim.Cn_alpha[counter], rocketSim.Cd[counter] = aerodynamic_para(aero_data_wab,
+                                                                                                                                                                 aero_data_ab,
+                                                                                                                                                                 mach_no,
+                                                                                                                                                                 rocketSim.psi[counter],
+                                                                                                                                                                 rocketSim.theta[counter],
+                                                                                                                                                                 rocketSim.mphase,
+                                                                                                                                                                 rocketSim.flag)
+        momentarm = rocketSim.CP[counter]-rocketSim.CG[counter] 
+        rocketSim.Stab_Cal[counter] = momentarm/(rocket.rocket_dia)
         
