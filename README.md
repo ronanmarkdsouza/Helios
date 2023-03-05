@@ -7,7 +7,7 @@ This is a 6 degree of freedom model developed by a group of enthusiastic enginee
 
 - [Introduction](#introduction)
 - [About the model](#about)
-- [How to install?](#How to install)
+- [How to install?](#Installation)
 - [How to use this package](#package)
 - [Contribution](#contributing)
 - [License](#license)
@@ -57,7 +57,7 @@ There are specific inputs required for the model to run which includes:
 30) Simulation Time step       
 
 
-## How to install?
+## Installation
 Clone this repository in your respective environment and download respective pacakges mentioned inside the main.py.
 
 
