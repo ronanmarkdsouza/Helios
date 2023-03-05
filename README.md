@@ -58,6 +58,7 @@ There are specific inputs required for the model to run which includes:
 
 
 ## How to install?
+Clone this repository in your respective environment and download respective pacakges mentioned inside the main.py.
 
 
 ## How to use this package?
