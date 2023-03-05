@@ -68,7 +68,6 @@ class rocket_params:
     timer = np.zeros(300000)
     velx = np.zeros(300000)
     dt = 0.001
-    counter1 = 1
     temp = 300
     CP = np.zeros(300000)
     C_roll = np.zeros(300000)
