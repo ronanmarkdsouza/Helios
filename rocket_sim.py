@@ -10,6 +10,9 @@ from density_and_temp import density_and_temp
 from propulsion_para import propulsion_para
 from aerodynamic_para import aerodynamic_para
 from predictor import predictor
+from turbulance_generator import turbulence_generator
+from wind_forces import wind_forces
+
 rocketSim = rocket_params()
 
 
@@ -20,6 +23,7 @@ def rocket_sim(rocket):
     aero_data_wab = pd.read_excel(rocket.aero_data, sheet_name=0)
     aero_data_ab = pd.read_excel(rocket.aero_data, sheet_name=1)
     Aref = math.pi*(rocket.rocket_dia**2)/4
+    fin_details = [rocket.fin_root_chord,rocket.fin_tip_chord,rocket.fin_height,rocket.fin_sweep_len,rocket.fin_dist_nosetip]
     counter = 1
     while rocketSim.Xe[counter] >= 0 or rocketSim.timer[counter]<time[-1]:
         sphi = math.sin(rocketSim.phi[counter])
@@ -100,6 +104,12 @@ def rocket_sim(rocket):
         
         else:
             rocketSim.state[counter] = 500
-
+        
+        if rocketSim.timer[counter] < 10 or rocketSim.u[counter] >= 0:
+            sidey, turbgen = turbulence_generator(counter,turbgen,rocket.wind_vel_n,rocket.turb_inten,rocket.time_step)
+            sidez, turbgen = turbulence_generator(counter,turbgen,rocket.wind_vel_e,rocket.turb_inten,rocket.time_step)
+        
+            Fy, Mz = wind_forces(sidey,rocketSim.CG[counter],mydensity,rocket.rocket_rad,rocket.rocket_length,fin_details)
+            Fz, My = wind_forces(sidez,rocketSim.CG[counter],mydensity,rocket.rocket_rad,rocket.rocket_length,fin_details)
 
 

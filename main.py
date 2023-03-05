@@ -22,6 +22,7 @@ p.add_argument("--rocket-cg", help="Center of Gravity of Rocket", default=os.get
 p.add_argument("--rocket-ami", help="AMI of Rocket", default=os.getenv('ROCKET_AMI'))
 p.add_argument("--rocket-tmi", help="TMI of Rocket", default=os.getenv('ROCKET_TMI'))
 p.add_argument("--rocket-dia", help="Diameter of the Rocket", default=os.getenv('ROCKET_DIA'))
+p.add_argument("--rocket-rad", help="Radius of the Rocket", default=os.getenv('ROCKET_RAD'))
 p.add_argument("--rocket-length", help="Length of the Rocket", default=os.getenv('ROCKET_LENGTH'))
 p.add_argument("--fin-root-chord", help="Root Chord of Fin", default=os.getenv('FIN_ROOT_CHORD'))
 p.add_argument("--fin-tip-chord", help="Tip Chord of Fin", default=os.getenv('FIN_TIP_CHORD'))
