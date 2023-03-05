@@ -22,7 +22,7 @@ Function Output:
 import numpy as np
 from scipy.interpolate import interp1d
 
-def side_forces1(vel,cm,den,rad,len,fin):
+def wind_forces(vel,cm,den,rad,len,fin):
     vel = np.sqrt(vel*vel)   
     cdcyl=[[-5,5],[10 ,3.33],[100 ,1.334],[1000 ,0.738],[10000 ,0.766],[100000 ,0.56],[1000000 ,0.55],[10000000, 0.54],[100000000 ,0.54]]
     cdcyl_1 = []
