@@ -68,7 +68,6 @@ class rocket_params:
     Ze = np.zeros(300000)
     timer = np.zeros(300000)
     velx = np.zeros(300000)
-    dt = 0.001
     temperature = 300
     CP = np.zeros(300000)
     C_roll = np.zeros(300000)
@@ -85,13 +84,9 @@ class rocket_params:
     phase = 0
     mphase = 1
     state = np.zeros(300000)
-    delay = 1
-    delaytracker = 0
     turb_gen = np.zeros((4,4))
     turb_gen[0,0] = 1
     turb_gen[0,3] = 1.5
     drift = np.zeros(300000)
     vtrajectory = np.zeros((300000, 3))
-
     Aref = np.pi*(rad**2)
-    

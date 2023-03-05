@@ -38,6 +38,7 @@ p.add_argument("--prop-data", help="Path to Propulsion Data", default=os.getenv(
 p.add_argument("--aero-data", help="Path to Aerodynamics Data", default=os.getenv('AERO_DATA'))
 p.add_argument("--delaytracker", help="Keeps track of mechanical delay of airbrakes in seconds", default=os.getenv('DELAY_TRACKER'))
 p.add_argument("--delay", help="Keeps track of electrical delay of airbrakes in seconds", default=os.getenv('DELAY'))
+p.add_argument("--time-step", help="Time step for each computation", default=os.getenv('TIME_STEP'))
 
 args = p.parse_args()
 rocket_sim(args)

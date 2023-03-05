@@ -77,7 +77,8 @@ def rocket_sim(rocket):
                                                           rocketSim.Xe[counter],
                                                           rocketSim.Mass[counter],
                                                           rocketSim.Aref,
-                                                          mytemperature)
+                                                          mytemperature,
+                                                          rocket)
             
             if rocketSim.prediction[counter] > rocket.desired:
                 if rocketSim.timer[counter] - rocket.delaytracker >= rocket.delay:
@@ -98,5 +99,5 @@ def rocket_sim(rocket):
         else:
             rocketSim.state[counter] = 500
 
-            
+
 
