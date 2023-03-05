@@ -42,4 +42,6 @@ def rocket_sim(rocket):
                                                          )
         rocketSim.Mass[counter] = rocket.rocket_mass + mmass
         rocketSim.CG[counter] = ((rocket.rocket_mass*rocket.rocket_cg)+(mmass*(rocket.rocket_length-(rocket.motor_length+rocket.noz_length)+mcg)))/rocketSim.Mass[counter]
+        rocketSim.Ixx[counter] = rocket.rocket_ami + mIx
+        rocketSim.Iyy[counter] = rocket.rocket_tmi + (rocket.rocket_mass*(rocketSim.CG[counter]-(rocket.rocket_cg))**2)+(mIy)+(mmass*(rocketSim.CG[counter]-(rocket.rocket_length-rocket.motor_length+mcg))**2)
         
