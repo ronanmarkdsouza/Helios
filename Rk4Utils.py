@@ -12,16 +12,16 @@ class Rk4Utils():
     yedot = 0
     zedot = 0
 
-    def __init__(self, udot,vdot,wdot,rdot,qdot,pdot,phidot,thetadot,psidot,xedot,yedot,zedot):
-        self.udot = udot
-        self.vdot = vdot
-        self.wdot = wdot
-        self.rdot = rdot
-        self.qdot = qdot
-        self.pdot = pdot
-        self.phidot = phidot
-        self.thetadot = thetadot
-        self.psidot = psidot
-        self.xedot = xedot
-        self.yedot = yedot
-        self.zedot = zedot
+    def __init__(self, args):
+        self.udot = args[0]
+        self.vdot = args[1]
+        self.wdot = args[2]
+        self.rdot = args[3]
+        self.qdot = args[4]
+        self.pdot = args[5]
+        self.phidot = args[6]
+        self.thetadot = args[7]
+        self.psidot = args[8]
+        self.xedot = args[9]
+        self.yedot = args[10]
+        self.zedot = args[11]

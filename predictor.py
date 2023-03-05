@@ -22,13 +22,13 @@ Function Output:
 import numpy as np
 from scipy.interpolate import interp1d
 
-def predictor(aerodata,accelerationx,velocityx,displacementx,currentmass,refArea,temp,dt):
-
+def predictor(aerodata,accelerationx,velocityx,displacementx,currentmass,refArea,temp):
+    dt = 0.01
     accel = np.zeros(100)
     vel = np.zeros(100)
     disp = np.zeros(100)
     timer = np.zeros(100)
-    counter = 0
+    counter = 1
 
     accel[0] = -accelerationx
     vel[0] = velocityx

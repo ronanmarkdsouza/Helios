@@ -59,4 +59,4 @@ def Rk4Derivative(thrust, drag, sidey, sidez, mass, u, v, w, p, q, r, cphi, cpsi
     xedot = ctheta*cphi*u + (-cphi*spsi + spsi*stheta*cpsi)*v + (sphi*spsi + cphi*stheta*cpsi)*w
     yedot = ctheta*spsi*u + (cphi*cpsi + sphi*stheta*spsi)*v + (-sphi*cpsi + cphi*stheta*spsi)*w 
     zedot = -stheta*u + sphi*ctheta*v + cphi*ctheta*w
-    return udot, vdot, wdot, rdot, qdot, pdot, phidot, thetadot, psidot, xedot, yedot, zedot
+    return [udot, vdot, wdot, rdot, qdot, pdot, phidot, thetadot, psidot, xedot, yedot, zedot]

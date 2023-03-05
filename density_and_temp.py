@@ -18,6 +18,6 @@ Function Outputs:
 def density_and_temp(altitude,temperature_outside):
         a = -0.0065
         temperature = temperature_outside + (a * altitude)
-        density = 1.23 * ((temperature - temperature_outside)**((-9.81/(a*287))-1))
+        density = 1.23 * ((temperature/temperature_outside)**((-9.81/(a*287))-1))
         
         return density, temperature
