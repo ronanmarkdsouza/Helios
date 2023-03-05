@@ -13,7 +13,8 @@ from aerodynamic_para import aerodynamic_para
 from predictor import predictor
 from turbulance_generator import turbulence_generator
 from wind_forces import wind_forces
-
+from Rk4Derivative import Rk4Derivative
+from Rk4Utils import Rk4Utils
 rocketSim = rocket_params()
 
 
@@ -156,5 +157,84 @@ def rocket_sim(rocket):
                 rocketSim.theta[counter] = 0
                 rocketSim.phase = 1
                 rocketSim.flag = 0
-    
 
+        Rk1 = Rk4Utils(Rk4Derivative(mythrust,
+                                     drag,
+                                     Fy,
+                                     Fz,
+                                     rocketSim.Mass[counter],
+                                     rocketSim.u[counter],
+                                     rocketSim.v[counter],
+                                     rocketSim.w[counter],
+                                     rocketSim.p[counter],
+                                     rocketSim.q[counter],
+                                     rocketSim.r[counter],
+                                     cphi,cpsi,ctheta,sphi,spsi,stheta,
+                                     Yaw,Pitch,Roll,
+                                     rocketSim.Ixx[counter],
+                                     rocketSim.Iyy[counter],rocketSim.Iyy[counter]))
+        Rk2 = Rk4Utils(Rk4Derivative(mythrust,
+                                     drag,
+                                     Fy,
+                                     Fz,
+                                     rocketSim.Mass[counter],
+                                     rocketSim.u[counter],
+                                     Rk1.udot*(rocket.time_step/2),
+                                     rocketSim.v[counter],
+                                     Rk1.vdot*(rocket.time_step/2),
+                                     rocketSim.w[counter],
+                                     Rk1.wdot*(rocket.time_step/2),
+                                     rocketSim.p[counter],
+                                     Rk1.pdot*(rocket.time_step/2),
+                                     rocketSim.q[counter],
+                                     Rk1.qdot*(rocket.time_step/2),
+                                     rocketSim.r[counter],
+                                     Rk1.rdot*(rocket.time_step/2),
+                                     cphi,cpsi,ctheta,sphi,spsi,stheta,
+                                     Yaw,Pitch,Roll,
+                                     rocketSim.Ixx[counter],
+                                     rocketSim.Iyy[counter],rocketSim.Iyy[counter]))
+        
+        Rk3 = Rk4Utils(Rk4Derivative(mythrust,
+                                     drag,
+                                     Fy,
+                                     Fz,
+                                     rocketSim.Mass[counter],
+                                     rocketSim.u[counter],
+                                     Rk2.udot*(rocket.time_step/2),
+                                     rocketSim.v[counter],
+                                     Rk2.vdot*(rocket.time_step/2),
+                                     rocketSim.w[counter],
+                                     Rk2.wdot*(rocket.time_step/2),
+                                     rocketSim.p[counter],
+                                     Rk2.pdot*(rocket.time_step/2),
+                                     rocketSim.q[counter],
+                                     Rk2.qdot*(rocket.time_step/2),
+                                     rocketSim.r[counter],
+                                     Rk2.rdot*(rocket.time_step/2),
+                                     cphi,cpsi,ctheta,sphi,spsi,stheta,
+                                     Yaw,Pitch,Roll,
+                                     rocketSim.Ixx[counter],
+                                     rocketSim.Iyy[counter],rocketSim.Iyy[counter]))
+        
+        Rk4 = Rk4Utils(Rk4Derivative(mythrust,
+                                     drag,
+                                     Fy,
+                                     Fz,
+                                     rocketSim.Mass[counter],
+                                     rocketSim.u[counter],
+                                     Rk3.udot*(rocket.time_step/2),
+                                     rocketSim.v[counter],
+                                     Rk3.vdot*(rocket.time_step/2),
+                                     rocketSim.w[counter],
+                                     Rk3.wdot*(rocket.time_step/2),
+                                     rocketSim.p[counter],
+                                     Rk3.pdot*(rocket.time_step/2),
+                                     rocketSim.q[counter],
+                                     Rk3.qdot*(rocket.time_step/2),
+                                     rocketSim.r[counter],
+                                     Rk3.rdot*(rocket.time_step/2),
+                                     cphi,cpsi,ctheta,sphi,spsi,stheta,
+                                     Yaw,Pitch,Roll,
+                                     rocketSim.Ixx[counter],
+                                     rocketSim.Iyy[counter],rocketSim.Iyy[counter]))
