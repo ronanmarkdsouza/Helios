@@ -50,4 +50,19 @@ def aerodynamic_para(data1, data2, mach, pitch, yaw, phase, flag):
 
     cn_alpha[:,0] = data1.iloc[0:199,11]
     cp[:,0] = data1.iloc[0:199,12]
+   
+#Airbrakes
+    cd_poweron[:,0,1] = data2.iloc[0:199,4]
+    cd_poweron[:,1,1] = data2.iloc[2500:2699,4]
+    cd_poweron[:,2,1] = data2.iloc[5000:5199,4]
+    cd_poweroff[:,0,1] = data2.iloc[0:199,3]
+    cd_poweroff[:,1,1] = data2.iloc[2500:2699,3]
+    cd_poweroff[:,2,1] = data2.iloc[5000:5199,3]
+
+    cd_poweron = np.transpose(cd_poweron)
+    cn = np.transpose(cn)
+    cp = np.transpose(cp)
+    cd_poweroff = np.transpose(cd_poweroff)
+    cn_alpha = np.transpose(cn_alpha)
+    
     
