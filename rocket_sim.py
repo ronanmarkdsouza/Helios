@@ -7,6 +7,7 @@ import math
 import pandas as pd
 from initialize import rocket_params
 from density_and_temp import density_and_temp
+from propulsion_para import propulsion_para
 rocketSim = rocket_params()
 
 def rocket_sim(rocket):
@@ -29,4 +30,4 @@ def rocket_sim(rocket):
         v_sound = math.sqrt(1.4*287*mytemperature)
         mach_no = rocketSim.u[counter]/v_sound
 
-        
+        mmass, mcg, mIx, mIy, mythrust = propulsion_para()
