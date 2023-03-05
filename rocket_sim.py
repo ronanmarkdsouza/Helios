@@ -243,4 +243,4 @@ def rocket_sim(rocket):
 
     rocketSim.prediction[counter] = 0
     rocketSim.state[counter] = 500
-    return rocketSim.Xe
+    return rocketSim.vtrajectory, rocketSim.acceleration, rocketSim.velx, rocketSim.drift, rocketSim.timer, rocketSim.Stab_Cal, rocketSim.Xe, rocketSim.Ye,rocketSim.Ze, time, thrust

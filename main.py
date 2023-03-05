@@ -2,6 +2,7 @@ import argparse
 import os
 from dotenv import load_dotenv
 from rocket_sim import rocket_sim
+from output_pdf import output_pdf
 load_dotenv()
 
 p = argparse.ArgumentParser()
@@ -40,7 +41,9 @@ p.add_argument("--aero-data", help="Path to Aerodynamics Data", default=os.geten
 p.add_argument("--delaytracker", help="Keeps track of mechanical delay of airbrakes in seconds", default=os.getenv('DELAY_TRACKER'), type=float)
 p.add_argument("--delay", help="Keeps track of electrical delay of airbrakes in seconds", default=os.getenv('DELAY'), type=float)
 p.add_argument("--time-step", help="Time step for each computation", default=os.getenv('TIME_STEP'), type=float)
+p.add_argument("-o","--output", help="Name of the output file", default=os.getenv('OUTPUT'))
 
 args = p.parse_args()
 
-a = rocket_sim(args)
+vtrajectory, acceleration, velocity, drift_dist, timer, stability_cal, Xe, Ye, Ze, motor_time, motor_thrust = rocket_sim(args)
+output_pdf(args.output,vtrajectory, acceleration, velocity, drift_dist, timer, stability_cal, Xe, Ye, Ze, motor_time, motor_thrust, args)
