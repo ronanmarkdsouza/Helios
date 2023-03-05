@@ -140,4 +140,21 @@ def rocket_sim(rocket):
             rocketSim.vtrajectory[counter,0]=rocketSim.Xe[counter]
             rocketSim.vtrajectory[counter,1]=rocketSim.Ye[counter]
             rocketSim.vtrajectory[counter,2]=rocketSim.Ze[counter]
+        
+        else:
+            pdia = rocket.reefed_dia
+            if rocketSim.Xe[counter]<rocket.reefed_height:
+                pdia = rocket.parachute_dia
+                drag = (0.5*1.2*math.pi*(pdia)*(pdia)/4)*mydensity*rocketSim.u[counter]*rocketSim.u[counter]*np.sign(rocketSim.u[counter])
+                Fy = (0.5*0.1*mydensity*(sidey**2)*(math.pi*(pdia)*(pdia)/4)*np.sign(sidey))-(0.5*0.1*mydensity*(rocketSim.v[counter]**2)*(math.pi*(pdia)*(pdia)/4)*np.sign(v[counter]))
+                Fz = (0.5*0.1*mydensity*(sidez**2)*(math.pi*(pdia)*(pdia)/4)*np.sign(sidez))-(0.5*0.1*mydensity*(rocketSim.w[counter]**2)*(math.pi*(pdia)*(pdia)/4)*np.sign(w[counter]))
+                Yaw = 0
+                Pitch = 0
+                Roll = 0
+                rocketSim.phi[counter] = 0
+                rocketSim.psi[counter] = 0
+                rocketSim.theta[counter] = 0
+                rocketSim.phase = 1
+                rocketSim.flag = 0
+    
 
