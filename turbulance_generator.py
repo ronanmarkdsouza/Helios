@@ -38,4 +38,9 @@ def turbulence_generator(n,a,U,I,dt):
                 avg = (a[1,1] + a[0,1])/2
                 a[0,3] = np.sqrt(((a[2,1]-avg)**2 + (a[2,1]-avg)**2)/2)
         
-        
+        else:
+                a[3,0] = (n-(5/6))*(a[2,0]/n)
+                a[3,1] = np.random.normal() - (a[3,0]*a[2,1]) - (a[2,0]*a[1,1]) - (a[1,0]*a[0,1])
+                a[3,2] = a[2,2] + dt
+                avg = (a[2,1] +a[1,1] + a[0,1])/2
+                a[0,3] = np.sqrt(((a[3,1]-avg)**2+(a[3,1]-avg)**2+(a[3,1]-avg)**2)/3)
