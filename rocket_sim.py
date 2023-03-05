@@ -238,3 +238,28 @@ def rocket_sim(rocket):
                                      Yaw,Pitch,Roll,
                                      rocketSim.Ixx[counter],
                                      rocketSim.Iyy[counter],rocketSim.Iyy[counter]))
+        
+        rocketSim.u[counter+1] = rocketSim.u[counter] + (1/6)*(Rk1.udot1 + 2*Rk2.udot2 + 2*Rk3.udot3 + Rk4.udot4)*rocket.time_step
+        rocketSim.acceleration[counter+1] =  (1/6)*(Rk1.udot1 + 2*Rk2.udot2 + 2*Rk3.udot3 + Rk4.udot4)
+        rocketSim.v[counter+1] = rocketSim.v[counter] + (1/6)*(Rk1.vdot1 + 2*Rk2.vdot2 + 2*Rk3.vdot3 + Rk4.vdot4)*rocket.time_step
+        rocketSim.w[counter+1] = rocketSim.w[counter] + (1/6)*(Rk1.wdot1 + 2*Rk2.wdot2 + 2*Rk3.wdot3 + Rk4.wdot4)*rocket.time_step
+        rocketSim.r[counter+1] = rocketSim.r[counter] + (1/6)*(Rk1.rdot1 + 2*Rk2.rdot2 + 2*Rk3.rdot3 + Rk4.rdot4)*rocket.time_step
+        rocketSim.q[counter+1] = rocketSim.q[counter] + (1/6)*(Rk1.qdot1 + 2*Rk2.qdot2 + 2*Rk3.qdot3 + Rk4.qdot4)*rocket.time_step
+        rocketSim.p[counter+1] = rocketSim.p[counter] + (1/6)*(Rk1.pdot1 + 2*Rk2.pdot2 + 2*Rk3.pdot3 + Rk4.pdot4)*rocket.time_step
+        rocketSim.phi[counter+1] = rocketSim.phi[counter] + (1/6)*(Rk1.phidot1 + 2*Rk2.phidot2 + 2*Rk3.phidot3 + Rk4.phidot4)*rocket.time_step
+        rocketSim.theta[counter+1] = rocketSim.theta[counter] + (1/6)*(thetadot1 + 2*Rk2.thetadot2 + 2*Rk3.thetadot3 + Rk4.thetadot4)*rocket.time_step
+        rocketSim.psi[counter+1] = rocketSim.psi[counter] + (1/6)*(Rk1.psidot1 + 2*Rk2.psidot2 + 2*Rk3.psidot3 + Rk4.psidot4)*rocket.time_step
+        rocketSim.Xe[counter+1] = rocketSim.Xe[counter] + (1/6)*(Rk1.xedot1 + 2*Rk2.xedot2 + 2*Rk3.xedot3 + Rk4.xedot4)*rocket.time_step
+        rocketSim.Ye[counter+1] = rocketSim.Ye[counter] + (1/6)*(Rk1.yedot1 + 2*Rk2.yedot2 + 2*Rk3.yedot3 + Rk4.yedot4)*rocket.time_step
+        rocketSim.Ze[counter+1] = rocketSim.Ze[counter] + (1/6)*(Rk1.zedot1 + 2*Rk2.zedot2 + 2*Rk3.zedot3 + Rk4.zedot4)*rocket.time_step
+        rocketSim.velx[counter+1] = (1/6)*(Rk1.xedot1 + 2*Rk2.xedot2 + 2*Rk3.xedot3 + Rk4.xedot4)
+        rocketSim.timer[counter+1] = rocketSim.timer[counter] + rocket.time_step
+        counter = counter + 1
+        rocketSim.drift[counter] = np.sqrt((rocketSim.Ye[counter]**2)+(rocketSim.Ze[counter]**2))
+
+        if phase == 0 and rocketSim.Xe[counter]<0:
+            rocketSim.Xe[counter] = 0
+            rocketSim.u[counter] = 0
+
+rocketSim.prediction[counter] = 0
+rocketSim.state[counter] = 500
