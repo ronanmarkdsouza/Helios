@@ -1,6 +1,7 @@
 import argparse
 import os
 from dotenv import load_dotenv
+from rocket_sim import rocket_sim
 load_dotenv()
 
 p = argparse.ArgumentParser()
@@ -36,6 +37,5 @@ p.add_argument("--noz-length", help="Nozzle Length", default=os.getenv('NOZ_LENG
 p.add_argument("--prop-data", help="Path to Propulsion Data", default=os.getenv('PROP_DATA'))
 p.add_argument("--aero-data", help="Path to Aerodynamics Data", default=os.getenv('AERO_DATA'))
 
-
-
 args = p.parse_args()
+rocket_sim(args)

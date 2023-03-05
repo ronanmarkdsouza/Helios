@@ -49,3 +49,46 @@ Function Outputs:
                 - drift --> range calculated from the launch pad location to the landing location
                 - vtrajectory --> variable for plotting rocket trajectory during ascent phase
 """
+import numpy as np
+class rocket_params:
+    acceleration = np.zeros(300000)
+    prediction = np.zeros(300000)
+    u = np.zeros(300000)
+    v = np.zeros(300000)
+    w = np.zeros(300000)
+    p = np.zeros(300000)
+    q = np.zeros(300000)
+    r = np.zeros(300000)
+    psi = np.zeros(300000)
+    theta = np.zeros(300000)
+    phi = np.zeros(300000)
+    Xe = np.zeros(300000)
+    Ye = np.zeros(300000)
+    Ze = np.zeros(300000)
+    timer = np.zeros(300000)
+    velx = np.zeros(300000)
+    dt = 0.001
+    counter1 = 1
+    temp = 300
+    CP = np.zeros(300000)
+    C_roll = np.zeros(300000)
+    Cn_yaw = np.zeros(300000)
+    Cn_pitch = np.zeros(300000)
+    Cn_alpha = np.zeros(300000)
+    Cd = np.zeros(300000)
+    Mass = np.zeros(300000)
+    CG = np.zeros(300000)
+    Ixx = np.zeros(300000)
+    Iyy = np.zeros(300000)
+    Stab_Cal = np.zeros(300000)
+    flag= 0
+    phase = 0
+    mphase = 1
+    state = np.zeros(300000)
+    delay = 1
+    delaytracker = 0
+    turb_gen = np.zeros((4,4))
+    turb_gen[0,0] = 1
+    turb_gen[0,3] = 1.5
+    drift = np.zeros(300000)
+    vtrajectory = np.zeros((300000, 3))
