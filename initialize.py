@@ -50,6 +50,7 @@ Function Outputs:
                 - vtrajectory --> variable for plotting rocket trajectory during ascent phase
 """
 import numpy as np
+from main import mrad as rad
 class rocket_params:
     acceleration = np.zeros(300000)
     prediction = np.zeros(300000)
@@ -91,3 +92,6 @@ class rocket_params:
     turb_gen[0,3] = 1.5
     drift = np.zeros(300000)
     vtrajectory = np.zeros((300000, 3))
+
+    Aref = np.pi*(rad**2)
+    

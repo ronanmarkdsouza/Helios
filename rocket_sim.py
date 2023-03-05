@@ -9,6 +9,7 @@ from initialize import rocket_params
 from density_and_temp import density_and_temp
 from propulsion_para import propulsion_para
 from aerodynamic_para import aerodynamic_para
+from predictor import predictor
 rocketSim = rocket_params()
 
 def rocket_sim(rocket):
@@ -58,4 +59,44 @@ def rocket_sim(rocket):
                                                                                                                                                                  rocketSim.flag)
         momentarm = rocketSim.CP[counter]-rocketSim.CG[counter] 
         rocketSim.Stab_Cal[counter] = momentarm/(rocket.rocket_dia)
+
+        if rocketSim.timer[counter] > time[-1]:
+            if rocketSim.flag == 0:
+                rocketSim.prediction[counter] = predictor(aero_data_wab, 
+                                                          rocketSim.acceleration[counter], 
+                                                          rocketSim.u[counter],
+                                                          rocketSim.Xe[counter],
+                                                          rocketSim.Mass[counter],
+                                                          rocketSim.Aref,
+                                                          mytemperature)
+                
+            elif rocketSim.flag == 1:
+                rocketSim.prediction[counter] = predictor(aero_data_ab, 
+                                                          rocketSim.acceleration[counter], 
+                                                          rocketSim.u[counter],
+                                                          rocketSim.Xe[counter],
+                                                          rocketSim.Mass[counter],
+                                                          rocketSim.Aref,
+                                                          mytemperature)
+            
+            if rocketSim.prediction[counter] > rocket.desired:
+                if rocketSim.timer[counter] - rocket.delaytracker >= rocket.delay:
+                    rocketSim.flag = 1
+                    rocket.delaytracker = rocketSim.timer[counter]
+            
+            elif rocketSim.prediction[counter] < rocket.desired:
+                if rocketSim.timer[counter] - rocket.delaytracker >= rocket.delay:
+                    rocketSim.flag = 0
+                    rocket.delaytracker = rocketSim.timer[counter]
         
+        else:
+            rocketSim.prediction[counter] = 0
+        
+        if rocketSim.flag == 1:
+            rocketSim.state[counter] = 2000
+        
+        else:
+            rocketSim.state[counter] = 500
+
+            
+
