@@ -30,4 +30,16 @@ def rocket_sim(rocket):
         v_sound = math.sqrt(1.4*287*mytemperature)
         mach_no = rocketSim.u[counter]/v_sound
 
-        mmass, mcg, mIx, mIy, mythrust = propulsion_para()
+        mmass, mcg, mIx, mIy, mythrust = propulsion_para(rocketSim.timer[counter], 
+                                                         rocket.motor_length, 
+                                                         rocket.motor_odia, 
+                                                         rocket.motor_wetmass,
+                                                         rocket.motor_drymass,
+                                                         rocket.noz_mass,
+                                                         rocket.noz_length,
+                                                         thrust, 
+                                                         time
+                                                         )
+        rocketSim.Mass[counter] = rocket.rocket_mass + mmass
+        rocketSim.CG[counter] = ((rocket.rocket_mass*rocket.rocket_cg)+(mmass*(rocket.rocket_length-(rocket.motor_length+rocket.noz_length)+mcg)))/rocketSim.Mass[counter]
+        
