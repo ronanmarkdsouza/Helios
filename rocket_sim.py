@@ -12,13 +12,14 @@ from aerodynamic_para import aerodynamic_para
 from predictor import predictor
 rocketSim = rocket_params()
 
+
 def rocket_sim(rocket):
     prop_data = pd.read_excel(rocket.prop_data)
     thrust = prop_data.loc[:,'thrust'].to_list()
     time = prop_data.loc[:,'time'].to_list()
     aero_data_wab = pd.read_excel(rocket.aero_data, sheet_name=0)
     aero_data_ab = pd.read_excel(rocket.aero_data, sheet_name=1)
-    
+    Aref = math.pi*(rocket.rocket_dia**2)/4
     counter = 1
     while rocketSim.Xe[counter] >= 0 or rocketSim.timer[counter]<time[-1]:
         sphi = math.sin(rocketSim.phi[counter])
@@ -67,7 +68,7 @@ def rocket_sim(rocket):
                                                           rocketSim.u[counter],
                                                           rocketSim.Xe[counter],
                                                           rocketSim.Mass[counter],
-                                                          rocketSim.Aref,
+                                                          Aref,
                                                           mytemperature)
                 
             elif rocketSim.flag == 1:
@@ -76,7 +77,7 @@ def rocket_sim(rocket):
                                                           rocketSim.u[counter],
                                                           rocketSim.Xe[counter],
                                                           rocketSim.Mass[counter],
-                                                          rocketSim.Aref,
+                                                          Aref,
                                                           mytemperature,
                                                           rocket)
             

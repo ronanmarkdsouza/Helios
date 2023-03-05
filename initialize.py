@@ -25,7 +25,6 @@ Function Outputs:
                 - Ze --> Displacement along Z-direction at any interval in meters
                 - timer --> time at any given time step in seconds
                 - velx --> Velocity along X-direction
-                - dt --> time step between each iteration in seconds (default = 0.01s)
                 - counter1 --> variable to track the number of iterations
                 - temp --> temperature at any given interval
                 - CP --> coefficient of pressure 
@@ -43,14 +42,11 @@ Function Outputs:
                 - phase --> variable to keep track of phase of rocket (0 for ascent and 1 for parachute)
                 - mphase --> determines the phase of the motors
                 - state --> tracks the airbrakes state (2000 when deployed and 500 when deployed)
-                - delay --> delay due to electrical constraints in airbrakes
-                - delaytracker --> delay due to mechanical constraints in airbrakes
                 - turb_gen --> generates turbulance constant
                 - drift --> range calculated from the launch pad location to the landing location
                 - vtrajectory --> variable for plotting rocket trajectory during ascent phase
 """
 import numpy as np
-from main import mrad as rad
 class rocket_params:
     acceleration = np.zeros(300000)
     prediction = np.zeros(300000)
@@ -89,4 +85,3 @@ class rocket_params:
     turb_gen[0,3] = 1.5
     drift = np.zeros(300000)
     vtrajectory = np.zeros((300000, 3))
-    Aref = np.pi*(rad**2)
