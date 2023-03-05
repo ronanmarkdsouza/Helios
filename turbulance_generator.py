@@ -17,3 +17,12 @@ Function Output:
         u --> Velocity of the wind with noise
         a --> Turbulence generated due to gusts of wind
 """
+import numpy as np
+
+def turbulence_generator(n,a,U,I,dt):
+        
+        Standard_deviation = U*I*0.01
+        
+        if n==0:
+                a[0,1] = np.random.normal()
+        
