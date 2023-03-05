@@ -6,11 +6,18 @@ Description:
         to compute density and temperature at every given time step respectively using the International Standard Atmosphere model.
 
 Function Inputes:
-        y --> Altitude of the rocket at a given time step in meters
-        t1 --> Temperature of the outside at sea level in kelvin
+        altitude --> Altitude of the rocket at a given time step in meters
+        temperature --> Temperature of the outside at sea level in kelvin
         a --> Lapse rate (-0.0065 for altitude below 10 km)
 
 Function Outputs:
         d --> Density of the air at a given altitude
         t --> Temperature of the air at a given altitude
 """
+
+def density_and_temp(altitude,temperature_outside):
+        a = -0.0065
+        temperature = temperature_outside + (a * altitude)
+        density = 1.23 * ((temperature - temperature_outside)**((-9.81/(a*287))-1))
+        
+        return density, temperature
