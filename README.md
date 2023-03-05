@@ -7,7 +7,6 @@ This is a 6 degree of freedom model developed by a group of enthusiastic enginee
 
 - [Introduction](#introduction)
 - [About the model](#about)
-- [Methodology](#methodology)
 - [How to install?](#install)
 - [How to use this package](#package)
 - [Contribution](#contributing)
