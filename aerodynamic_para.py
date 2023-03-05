@@ -65,4 +65,89 @@ def aerodynamic_para(data1, data2, mach, pitch, yaw, phase, flag):
     cd_poweroff = np.transpose(cd_poweroff)
     cn_alpha = np.transpose(cn_alpha)
     
+    if phase == 1:
+        f_cd0 = interp1d(m,cd_poweron[0,0,:])
+        cd0 = f_cd0(mach)
+        f_cd2 = interp1d(m,cd_poweron[0,1,:])
+        cd2 = f_cd2(mach)
+        f_cd4 = interp1d(m,cd_poweron[0,2,:])
+        cd4 = f_cd4(mach)
+        coeffs_cd = np.array([cd0, cd2, cd4])
+        p1 = np.polyfit(angle,coeffs_cd,2)
+
+        CD=(p1[0] * (pitch**2+ yaw**2)) + (p1[1]*np.sqrt(pitch**2 + yaw**2)) + p1[2]
+
+        cn0=0
+        f_cn2 = interp1d(m,cn[1,:])
+        cn2 = f_cd0(mach)
+        f_cn4 = interp1d(m,cn[2,:])
+        cn4 = f_cd2(mach)
+        coeffs_cn = np.array([cn0, cn2, cn4])
+        p2 = np.polyfit(angle,coeffs_cn,2)
+
+        CNP=(p2[0]*pitch**2) +( p2[1]*pitch) + p1[2]
+        CNY=(p2[0]*yaw**2) + (p2[1]*yaw) + p1[2]
+
+        f_cp = interp1d(m,cp)
+        CP = f_cp(mach)
+
+    elif phase == 0:
+        if flag == 0:
+            f_cd0 = interp1d(m,cd_poweroff[0,0,:])
+            cd0 = f_cd0(mach)
+            f_cd2 = interp1d(m,cd_poweroff[0,1,:])
+            cd2 = f_cd2(mach)
+            f_cd4 = interp1d(m,cd_poweroff[0,2,:])
+            cd4 = f_cd4(mach)
+            coeffs_cd = np.array([cd0, cd2, cd4])
+            p1 = np.polyfit(angle,coeffs_cd,2)
+
+            CD=(p1[0] * (pitch**2+ yaw**2)) + (p1[1]*np.sqrt(pitch**2 + yaw**2)) + p1[2]
+
+            cn0=0
+            f_cn2 = interp1d(m,cn[1,:])
+            cn2 = f_cd0(mach)
+            f_cn4 = interp1d(m,cn[2,:])
+            cn4 = f_cd2(mach)
+            coeffs_cn = np.array([cn0, cn2, cn4])
+            p2 = np.polyfit(angle,coeffs_cn,2)
+
+            CNP=(p2[0]*pitch**2) +( p2[1]*pitch) + p1[2]
+            CNY=(p2[0]*yaw**2) + (p2[1]*yaw) + p1[2]
+
+            f_cp = interp1d(m,cp)
+            CP = f_cp(mach)
+
+        elif flag == 1:
+            f_cd0 = interp1d(m,cd_poweroff[1,0,:])
+            cd0 = f_cd0(mach)
+            f_cd2 = interp1d(m,cd_poweroff[1,1,:])
+            cd2 = f_cd2(mach)
+            f_cd4 = interp1d(m,cd_poweroff[1,2,:])
+            cd4 = f_cd4(mach)
+            coeffs_cd = np.array([cd0, cd2, cd4])
+            p1 = np.polyfit(angle,coeffs_cd,2)
+
+            CD=(p1[0] * (pitch**2+ yaw**2)) + (p1[1]*np.sqrt(pitch**2 + yaw**2)) + p1[2]
+
+            cn0=0
+            f_cn2 = interp1d(m,cn[1,:])
+            cn2 = f_cd0(mach)
+            f_cn4 = interp1d(m,cn[2,:])
+            cn4 = f_cd2(mach)
+            coeffs_cn = np.array([cn0, cn2, cn4])
+            p2 = np.polyfit(angle,coeffs_cn,2)
+
+            CNP=(p2[0]*pitch**2) +( p2[1]*pitch) + p1[2]
+            CNY=(p2[0]*yaw**2) + (p2[1]*yaw) + p1[2]
+
+            f_cp = interp1d(m,cp)
+            CP = f_cp(mach)
+    
+    f_CN_alpha = interp1d(m,cn_alpha)
+    CN_alpha = f_CN_alpha(mach)
+    CP = CP/39.37 
+    
+    return CP, CNP, CNY, CN_alpha, CD
+    
     
