@@ -6,15 +6,15 @@ Description: This is the driver function for the simulator
 import math
 import pandas as pd
 import numpy as np
-from initialize import rocket_params
-from density_and_temp import density_and_temp
-from propulsion_para import propulsion_para
-from aerodynamic_para import aerodynamic_para
-from predictor import predictor
-from turbulance_generator import turbulence_generator
-from wind_forces import wind_forces
-from Rk4Derivative import Rk4Derivative
-from Rk4Utils import Rk4Utils
+from .initialize import rocket_params
+from .density_and_temp import density_and_temp
+from .propulsion_para import propulsion_para
+from .aerodynamic_para import aerodynamic_para
+from .predictor import predictor
+from .turbulance_generator import turbulence_generator
+from .wind_forces import wind_forces
+from .Rk4Derivative import Rk4Derivative
+from .Rk4Utils import Rk4Utils
 rocketSim = rocket_params()
 
 
