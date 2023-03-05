@@ -69,7 +69,8 @@ def rocket_sim(rocket):
                                                           rocketSim.Xe[counter],
                                                           rocketSim.Mass[counter],
                                                           Aref,
-                                                          mytemperature)
+                                                          mytemperature,
+                                                          rocket.time_step)
                 
             elif rocketSim.flag == 1:
                 rocketSim.prediction[counter] = predictor(aero_data_ab, 
@@ -79,7 +80,7 @@ def rocket_sim(rocket):
                                                           rocketSim.Mass[counter],
                                                           Aref,
                                                           mytemperature,
-                                                          rocket)
+                                                          rocket.time_step)
             
             if rocketSim.prediction[counter] > rocket.desired:
                 if rocketSim.timer[counter] - rocket.delaytracker >= rocket.delay:
