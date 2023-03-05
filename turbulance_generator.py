@@ -31,3 +31,11 @@ def turbulence_generator(n,a,U,I,dt):
                 a[1,1] = np.random.normal() - (a[2,1]*a[1,2])
                 a[1,2] = a[0,2] + dt
         
+        elif n==2:
+                a[2,0] = (3-(5/6))*(a[1,0]/3)
+                a[2,1] = np.random.normal() -(a[2,0]*a[1,1])-(a[1,0]*a[0,1])
+                a[2,2] = a[1,2] + dt
+                avg = (a[1,1] + a[0,1])/2
+                a[0,3] = np.sqrt(((a[2,1]-avg)**2 + (a[2,1]-avg)**2)/2)
+        
+        
