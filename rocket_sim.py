@@ -6,6 +6,7 @@ Description: This is the driver function for the simulator
 import math
 import pandas as pd
 from initialize import rocket_params
+from density_and_temp import density_and_temp
 rocketSim = rocket_params()
 
 def rocket_sim(rocket):
@@ -23,3 +24,9 @@ def rocket_sim(rocket):
         cphi = math.cos(rocketSim.phi[counter])
         ctheta = math.cos(rocketSim.theta[counter])
         cpsi = math.cos(rocketSim.psi[counter])
+
+        mydensity, mytemperature = density_and_temp(rocketSim.Xe[counter], rocketSim.temperature)
+        v_sound = math.sqrt(1.4*287*mytemperature)
+        mach_no = rocketSim.u[counter]/v_sound
+
+        
