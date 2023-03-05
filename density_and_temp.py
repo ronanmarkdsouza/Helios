@@ -7,12 +7,12 @@ Description:
 
 Function Inputes:
         altitude --> Altitude of the rocket at a given time step in meters
-        temperature --> Temperature of the outside at sea level in kelvin
+        temperature_outside --> Temperature of the outside at sea level in kelvin
         a --> Lapse rate (-0.0065 for altitude below 10 km)
 
 Function Outputs:
-        d --> Density of the air at a given altitude
-        t --> Temperature of the air at a given altitude
+        density --> Density of the air at a given altitude
+        temperature --> Temperature of the air at a given altitude
 """
 
 def density_and_temp(altitude,temperature_outside):
