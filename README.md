@@ -7,7 +7,7 @@ This is a 6 degree of freedom model developed by a group of enthusiastic enginee
 
 - [Introduction](#introduction)
 - [About the model](#about)
-- [How to install?](#Installation)
+- [How to install?](#installation)
 - [How to use this package](#package)
 - [Contribution](#contributing)
 - [License](#license)
@@ -58,11 +58,23 @@ There are specific inputs required for the model to run which includes:
 
 
 ## Installation
-Clone this repository in your respective environment and download respective pacakges mentioned inside the main.py.
+Use the following to download the package from the PyPi Repository:
+```
+pip install helios-sim
+```
 
-
+## Package
 ## How to use this package?
-Once the package is installed on the respective Python environment, one can directly run the main.py file in order to input values and run the model. The model will ask for basic inputs which includes wind speeds in east and north direction, launch pitch and yaw angles, presence/absence of airbrakes, height of the launch rail and and percentage of turbulent intensity user wants in the model. 
+Once the package has been installed on the machine and the requirements are satisfied use the following command to run the Helios Simulator:
+```
+helios -[options] [values]
+```
+The following is an example for running the code with all parameters passed through CLI:
+```
+helios --yaw 2 --pitch 2 --wind-north 2 --wind-east 2 --turb-inten 5 --rail-length 5.18 --air-brakes 'n' --desired 3048 --parachute-dia 3 --reefed-parachute-dia 0.8 --reefed-height 460 --rocket-mass 26.4 --rocket-cg 1.92 --rocket-ami 0.09 --rocket-tmi 17.77 --rocket-dia 0.15 --rocket-rad 0.075 --rocket-length 3.03 --fin-root-chord 0.3 --fin-tip-chord 0.2 --fin-height 0.145 --fin-sweep-length 0.179 --fin-dist-nosetip 2.6 --motor-length 0.702 --motor-odia 0.098 --motor-wetmass 8.108 --motor-drymass 3.656 --noz-mass 0.1891 --noz-length 0.057 --prop-data 'prop_data.xlsx' --aero-data 'aero_data.xlsx' --delaytracker 0 --delay 1 --time-step 0.001 -o 'helios_output.pdf'
+```
+The output for the simulations run is stored in a PDF file as follows: <br>
+[output.pdf](helios_output.pdf)
 
 Users can change the input values through 2 methods.
 1) Opening '.env' file and manually overridding values of necessary parameters. 
